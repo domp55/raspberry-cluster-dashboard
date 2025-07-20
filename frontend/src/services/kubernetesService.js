@@ -1,52 +1,32 @@
+// frontend/src/services/kubernetesService.js
+
 import axios from 'axios';
 
-// Simulación de datos - reemplaza con llamadas reales a tu API de Kubernetes
+// La URL base de tu nuevo backend
+const API_URL = 'http://192.168.0.196:3001/api';
+
 export const kubernetesService = {
-  // Obtener información de pods
+  /**
+   * Obtiene el resumen de los pods desde nuestro backend.
+   */
   getPods: async () => {
-    // En producción, esto haría una llamada real a la API de Kubernetes
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          total: 12,
-          running: 10,
-          pending: 1,
-          failed: 1,
-          pods: [
-            { name: 'frontend-deployment-1', status: 'Running', node: 'pi-node-1' },
-            { name: 'backend-deployment-1', status: 'Running', node: 'pi-node-2' },
-            { name: 'database-deployment-1', status: 'Running', node: 'pi-node-3' },
-          ]
-        });
-      }, 1000);
-    });
+    const response = await axios.get(`${API_URL}/pods`);
+    return response.data;
   },
 
-  // Obtener información de nodos
+  /**
+   * Obtiene la lista de nodos desde nuestro backend.
+   */
   getNodes: async () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve([
-          { name: 'pi-master', status: 'Ready', cpu: '45%', memory: '60%' },
-          { name: 'pi-node-1', status: 'Ready', cpu: '32%', memory: '45%' },
-          { name: 'pi-node-2', status: 'Ready', cpu: '28%', memory: '52%' },
-          { name: 'pi-node-3', status: 'Ready', cpu: '38%', memory: '41%' },
-        ]);
-      }, 1000);
-    });
+    const response = await axios.get(`${API_URL}/nodes`);
+    return response.data;
   },
 
-  // Obtener proyectos desplegados
+  /**
+   * Obtiene la lista de deployments desde nuestro backend.
+   */
   getDeployments: async () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve([
-          { name: 'Web Frontend', replicas: 3, available: 3, namespace: 'default' },
-          { name: 'API Backend', replicas: 2, available: 2, namespace: 'default' },
-          { name: 'Database', replicas: 1, available: 1, namespace: 'database' },
-          { name: 'Monitoring', replicas: 1, available: 1, namespace: 'monitoring' },
-        ]);
-      }, 1000);
-    });
+    const response = await axios.get(`${API_URL}/deployments`);
+    return response.data;
   }
 };
