@@ -1,0 +1,27 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules           # Ignora node_modules en la raíz del proyecto (si existe)
+frontend/node_modules/  # Ignora node_modules dentro de la carpeta frontend
+backend/node_modules/   # Ignora node_modules dentro de la carpeta backend
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build                  # Ignora la carpeta build en la raíz del proyecto (si existe)
+frontend/build/         # Ignora la carpeta build específicamente dentro de frontend
+
+# misc
+.DS_Store
+.env                    # Añadido: para ignorar el archivo .env genérico
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

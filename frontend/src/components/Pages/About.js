@@ -1,0 +1,156 @@
+import React from 'react';
+import { 
+  Container, 
+  Typography, 
+  Paper, 
+  Grid, 
+  Avatar, 
+  Box,
+  Divider,
+  Chip
+} from '@mui/material';
+import { Person, Computer, Build, Cloud } from '@mui/icons-material';
+
+const About = () => {
+  const technologies = [
+    'Raspberry Pi 4',
+    'Kubernetes',
+    'Docker',
+    'React',
+    'Material-UI',
+    'Node.js',
+    'Linux Ubuntu Server'
+  ];
+
+  return (
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <Typography variant="h4" gutterBottom color="primary" align="center">
+        Acerca del Proyecto
+      </Typography>
+      
+      <Grid container spacing={4}>
+        <Grid item xs={12} md={8}>
+          <Paper sx={{ p: 3 }}>
+            <Box display="flex" alignItems="center" mb={2}>
+              <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>
+                <Person />
+              </Avatar>
+              <Typography variant="h6">
+                Información del equipo de desarrollo
+              </Typography>
+            </Box>
+            
+            <Typography paragraph>
+              Este cluster de Raspberry Pi con Kubernetes fue configurado y desarrollado 
+              como parte de un proyecto de aprendizaje en tecnologías de contenedores 
+              y orquestación. El objetivo principal es crear un entorno de desarrollo 
+              y testing económico pero potente para Apps Web.
+            </Typography>
+            
+            <Divider sx={{ my: 3 }} />
+            
+            <Box display="flex" alignItems="center" mb={2}>
+              <Computer sx={{ color: 'primary.main', mr: 1 }} />
+              <Typography variant="h6">
+                Configuración del Cluster
+              </Typography>
+            </Box>
+            
+            <Typography paragraph>
+              <strong>Nodo Master:</strong> Raspberry Pi 4 (4GB RAM) ejecutando 
+              el plano de control de Kubernetes con etcd, API server, scheduler 
+              y controller manager.
+            </Typography>
+            
+            <Typography paragraph>
+              <strong>Nodos Worker:</strong> 3x Raspberry Pi 3 (4GB RAM cada uno) 
+              ejecutando kubelet, kube-proxy y container runtime (containerd).
+            </Typography>
+            
+            <Typography paragraph>
+              <strong>Red:</strong> CNI Plugin (Flannel) para la comunicación 
+              entre pods a través de los nodos del cluster.
+            </Typography>
+            
+            <Divider sx={{ my: 3 }} />
+            
+            <Box display="flex" alignItems="center" mb={2}>
+              <Build sx={{ color: 'primary.main', mr: 1 }} />
+              <Typography variant="h6">
+                Proceso de Instalación
+              </Typography>
+            </Box>
+            
+            <Typography paragraph>
+              1. Instalación de Ubuntu Server 22.04 LTS en cada Raspberry Pi
+            </Typography>
+            <Typography paragraph>
+              2. Configuración de Docker y containerd como container runtime
+            </Typography>
+            <Typography paragraph>
+              3. Instalación de kubeadm, kubelet y kubectl
+            </Typography>
+            <Typography paragraph>
+              4. Inicialización del cluster y unión de nodos worker
+            </Typography>
+            <Typography paragraph>
+              5. Configuración de red con Flannel CNI
+            </Typography>
+            <Typography paragraph>
+              6. Instalación de Ingress Controller para exposición de servicios
+            </Typography>
+          </Paper>
+        </Grid>
+        
+        <Grid item xs={12} md={4}>
+          <Paper sx={{ p: 3, mb: 3 }}>
+            <Box display="flex" alignItems="center" mb={2}>
+              <Cloud sx={{ color: 'primary.main', mr: 1 }} />
+              <Typography variant="h6">
+                Tecnologías Utilizadas
+              </Typography>
+            </Box>
+            
+            <Box display="flex" flexWrap="wrap" gap={1}>
+              {technologies.map((tech) => (
+                <Chip 
+                  key={tech} 
+                  label={tech} 
+                  variant="outlined" 
+                  color="primary" 
+                  size="small" 
+                />
+              ))}
+            </Box>
+          </Paper>
+          
+          <Paper sx={{ p: 3 }}>
+            <Typography variant="h6" gutterBottom>
+              Especificaciones del Hardware
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Modelo:</strong> Raspberry Pi 4 Model B
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>RAM:</strong> 4GB LPDDR4
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Procesador:</strong> ARM Cortex-A72 (64-bit) quad-core 1.5GHz
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Almacenamiento:</strong> MicroSD 64GB Class 10 por nodo
+            </Typography>
+            <Typography variant="body2" paragraph>
+              <strong>Red:</strong> Gigabit Ethernet + WiFi 802.11ac
+            </Typography>
+            <Typography variant="body2">
+              <strong>Total del Cluster:</strong> 16GB RAM, 16 núcleos CPU
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
+
+export default About;
