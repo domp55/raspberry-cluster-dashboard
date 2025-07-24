@@ -22,6 +22,15 @@ const About = () => {
     'Linux Ubuntu Server'
   ];
 
+  const teamMembers = [
+    'Diego Marquez',
+    'Alyce Maldonado',
+    'Kevin Sarango',
+    'Jhair Ajila',
+    'Byron Gonzalez',
+    'Nayely Ramirez'
+  ];
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Typography variant="h4" gutterBottom color="primary" align="center">
@@ -46,6 +55,16 @@ const About = () => {
               y orquestación. El objetivo principal es crear un entorno de desarrollo 
               y testing económico pero potente para Apps Web.
             </Typography>
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mt: 2 }}>
+              Integrantes del equipo:
+            </Typography>
+            <ul>
+              {teamMembers.map((name) => (
+                <li key={name}>
+                  <Typography variant="body1">{name}</Typography>
+                </li>
+              ))}
+            </ul>
             
             <Divider sx={{ my: 3 }} />
             
@@ -57,19 +76,15 @@ const About = () => {
             </Box>
             
             <Typography paragraph>
-              <strong>Nodo Master:</strong> Raspberry Pi 4 (4GB RAM) ejecutando 
-              el plano de control de Kubernetes con etcd, API server, scheduler 
-              y controller manager.
+              <strong>Nodo Master:</strong> Raspberry Pi 4.
             </Typography>
             
             <Typography paragraph>
-              <strong>Nodos Worker:</strong> 3x Raspberry Pi 3 (4GB RAM cada uno) 
-              ejecutando kubelet, kube-proxy y container runtime (containerd).
+              <strong>Nodos Worker:</strong> 3x Raspberry Pi 3.
             </Typography>
-            
+
             <Typography paragraph>
-              <strong>Red:</strong> CNI Plugin (Flannel) para la comunicación 
-              entre pods a través de los nodos del cluster.
+              <strong>Switch:</strong> D-Link DES-1008A.
             </Typography>
             
             <Divider sx={{ my: 3 }} />
@@ -93,11 +108,8 @@ const About = () => {
             <Typography paragraph>
               4. Inicialización del cluster y unión de nodos worker
             </Typography>
-            <Typography paragraph>
-              5. Configuración de red con Flannel CNI
-            </Typography>
-            <Typography paragraph>
-              6. Instalación de Ingress Controller para exposición de servicios
+            <Typography gutterBottom color="primary" align="center">
+              Para mayor información visitar el video de nuestra pagina principal
             </Typography>
           </Paper>
         </Grid>
@@ -122,30 +134,6 @@ const About = () => {
                 />
               ))}
             </Box>
-          </Paper>
-          
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h6" gutterBottom>
-              Especificaciones del Hardware
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>Modelo:</strong> Raspberry Pi 4 Model B
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>RAM:</strong> 4GB LPDDR4
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>Procesador:</strong> ARM Cortex-A72 (64-bit) quad-core 1.5GHz
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>Almacenamiento:</strong> MicroSD 64GB Class 10 por nodo
-            </Typography>
-            <Typography variant="body2" paragraph>
-              <strong>Red:</strong> Gigabit Ethernet + WiFi 802.11ac
-            </Typography>
-            <Typography variant="body2">
-              <strong>Total del Cluster:</strong> 16GB RAM, 16 núcleos CPU
-            </Typography>
           </Paper>
         </Grid>
       </Grid>
