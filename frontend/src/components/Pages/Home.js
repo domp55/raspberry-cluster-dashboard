@@ -325,7 +325,7 @@ const Home = () => {
             </Box>
           </Paper>
 
-          {/* Video Sección */}
+          {/* Video Sección 
           <Paper
             elevation={0}
             sx={{
@@ -355,6 +355,8 @@ const Home = () => {
             >
               Video Demostrativo
             </Typography>
+            
+             
             <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
               <iframe
                 width="100%"
@@ -390,8 +392,10 @@ const Home = () => {
               >
                 Descargar Comandos
               </Button>
-            </Box>
+            </Box> 
+            
           </Paper>
+          */ }
         </Container>
       </Box>
     </Box>

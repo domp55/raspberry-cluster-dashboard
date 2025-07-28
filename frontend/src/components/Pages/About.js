@@ -7,9 +7,15 @@ import {
   Avatar, 
   Box,
   Divider,
-  Chip
+  Chip,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
 } from '@mui/material';
-import { Person, Computer, Build, Cloud } from '@mui/icons-material';
+import { Person, Computer, Build, Cloud, AttachMoney } from '@mui/icons-material';
 
 const About = () => {
   const technologies = [
@@ -29,6 +35,30 @@ const About = () => {
     'Jhair Ajila',
     'Byron Gonzalez',
     'Nayely Ramirez'
+  ];
+
+  const pricingPlans = [
+    {
+      plan: 'Básico (1 Nodo Worker)',
+      cores: '1 (Master) + 1 (Worker)',
+      ram: '2 GB (Master) + 1 GB (Worker)',
+      storage: '16 GB',
+      price: '$1/mes'
+    },
+    {
+      plan: 'Estándar (2 Nodos Worker)',
+      cores: '1 (Master) + 2 (Worker)',
+      ram: '2 GB (Master) + 2 GB (Worker)',
+      storage: '32 GB',
+      price: '$5/mes'
+    },
+    {
+      plan: 'Premium (3 Nodos Worker)',
+      cores: '1 (Master) + 3 (Worker)',
+      ram: '2 GB (Master) + 3 GB (Worker)',
+      storage: '48 GB',
+      price: '$10/mes'
+    },
   ];
 
   return (
@@ -51,7 +81,7 @@ const About = () => {
             
             <Typography paragraph>
               Este cluster de Raspberry Pi con Kubernetes fue configurado y desarrollado 
-              como parte de un proyecto de aprendizaje en tecnologías de contenedores 
+              como parte de un un proyecto de aprendizaje en tecnologías de contenedores 
               y orquestación. El objetivo principal es crear un entorno de desarrollo 
               y testing económico pero potente para Apps Web.
             </Typography>
@@ -137,6 +167,52 @@ const About = () => {
           </Paper>
         </Grid>
       </Grid>
+
+      {/* Pricing Section */}
+      <Box sx={{ mt: 6 }}>
+        <Paper sx={{ p: 3 }}>
+          <Box display="flex" alignItems="center" mb={2}>
+            <AttachMoney sx={{ color: 'primary.main', mr: 1 }} />
+            <Typography variant="h6">
+              Planes de Servicio para Despliegue de Aplicaciones Web
+            </Typography>
+          </Box>
+          <Typography paragraph>
+            Ofrecemos planes de servicio de bajo costo, diseñados para entornos universitarios y proyectos de desarrollo,
+            aprovechando la eficiencia de nuestro cluster de Raspberry Pi con Kubernetes.
+          </Typography>
+          <TableContainer>
+            <Table aria-label="pricing table">
+              <TableHead>
+                <TableRow>
+                  <TableCell sx={{ fontWeight: 'bold' }}>Plan de Servicio</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold' }}>Núcleos (CPU)</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold' }}>RAM</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold' }}>Almacenamiento (por nodo)</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold' }}>Pago por uso</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {pricingPlans.map((row) => (
+                  <TableRow key={row.plan}>
+                    <TableCell component="th" scope="row">
+                      {row.plan}
+                    </TableCell>
+                    <TableCell>{row.cores}</TableCell>
+                    <TableCell>{row.ram}</TableCell>
+                    <TableCell>{row.storage}</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>{row.price}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
+            *Los planes y características están sujetos a la disponibilidad del hardware del cluster.
+            Consulte para opciones personalizadas.
+          </Typography>
+        </Paper>
+      </Box>
     </Container>
   );
 };
