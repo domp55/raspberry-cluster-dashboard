@@ -1,0 +1,24 @@
+# Ignorar la carpeta node_modules en la raíz (si existe)
+node_modules/
+
+# Ignorar la carpeta node_modules del backend
+backend/node_modules/
+
+# Ignorar la carpeta node_modules del frontend
+frontend/node_modules/
+
+# Ignorar las carpetas de cache de node_modules (importante!)
+backend/node_modules/.cache/
+frontend/node_modules/.cache/
+
+# Ignorar archivos .env (que contienen secretos)
+.env
+
+# Ignorar el archivo de log de npm (si lo hay)
+npm-debug.log*
+
+# Otros posibles archivos o directorios a ignorar si no son relevantes para el repositorio
+# build/
+# dist/
+# .DS_Store
+# *.log

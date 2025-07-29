@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+// frontend/src/App.js
 
-import { theme } from './theme/theme';
-import Header from './components/Layout/Header';
-import Home from './components/Pages/Home';
-import Monitor from './components/Pages/Monitor';
-import About from './components/Pages/About';
-import { Settings } from '@mui/icons-material';
+import React, { useState } from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import EnhancedHeader from './components/EnhancedHeader';
+import EnhancedMonitor from './components/EnhancedMonitor';
+import RealtimeLogs from './components/RealtimeLogs';
+import About from './components/About'; // Tu componente existente
+import Home from './components/Home';   // Tu componente existente
+import { useWebSocket } from './hooks/useWebSocket';
+
+// Crear tema personalizado
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
+  typography: {
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+  },
+});
 
 function App() {
   const [currentTab, setCurrentTab] = useState(0);
+  // Inicializar el WebSocket hook (no necesitamos usar connectionStatus aquí)
+  useWebSocket();
 
   const handleTabChange = (event, newValue) => {
     setCurrentTab(newValue);
@@ -24,20 +39,28 @@ function App() {
       case 0:
         return <Home />;
       case 1:
-        return <Monitor />;
+        return <EnhancedMonitor />;
       case 2:
+        return <RealtimeLogs />;
+      case 3:
         return <About />;
       default:
         return <Home />;
-      
     }
   };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header currentTab={currentTab} onTabChange={handleTabChange} />
-      {renderContent()}
+      <div style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+        <EnhancedHeader 
+          currentTab={currentTab} 
+          onTabChange={handleTabChange} 
+        />
+        <main>
+          {renderContent()}
+        </main>
+      </div>
     </ThemeProvider>
   );
 }
